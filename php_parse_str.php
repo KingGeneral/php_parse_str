@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class MyParseStr
+ * Class ParseStr
  *
  *
  * @author boryo at https://github.com/boryo/php_parse_str
@@ -25,7 +25,7 @@ class ParseStr
 	{
 		if ($string === '') return;
 
-		$vars = explode('&', urldecode($string));
+		$vars = explode('&', $string);
 
 		if (false === is_array($result))
 		{
@@ -39,7 +39,7 @@ class ParseStr
 			}
 
 			$key = substr($var, 0, $eqPos);
-			$value = substr($var, $eqPos+1);
+			$value = urldecode(substr($var, $eqPos+1));
 
 			static::setQueryArrayValue($key, $result, $value);
 		}
